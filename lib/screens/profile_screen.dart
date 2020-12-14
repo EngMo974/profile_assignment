@@ -5,6 +5,29 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+ type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: '',
+          ),
+
+        ],
+      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 5,
@@ -33,7 +56,6 @@ class Profile extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-
               child: Column(
                 children: [
                   Row(
@@ -150,7 +172,7 @@ class Profile extends StatelessWidget {
             Divider(),
             Container(
               width: double.infinity,
-              height: 400,
+              height: MediaQuery.of(context).size.height * 0.43,
               child: GridView.builder(
                 padding: EdgeInsets.all(8),
                 itemCount: 9,
