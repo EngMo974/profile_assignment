@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
- type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -25,149 +26,145 @@ class Profile extends StatelessWidget {
             icon: Icon(Icons.person_outline),
             label: '',
           ),
-
         ],
       ),
+      endDrawer: Drawer(),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 5,
-        actions: [
-          Icon(
-            Icons.shopping_cart_outlined,
-            color: Colors.black,
-          ),
-          Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-        ],
-        title: Text(
-          'STYLISH',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'STYLISH',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.black,
+            ),
+          ],
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-        child: Column(
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
           children: [
-            Container(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 16, top: 16),
-                        width: 100,
-                        height: 100,
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/p.jpeg'),
-                        ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 16, top: 16),
+                      width: 100,
+                      height: 100,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/p.jpeg'),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: MediaQuery.of(context).size.height * 0.14,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: 16, left: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MyWidget(
-                                    title: '1,252',
-                                    subTitle: 'posts',
-                                  ),
-                                  MyWidget(
-                                    title: '4m',
-                                    subTitle: 'followers',
-                                  ),
-                                  MyWidget(
-                                    title: '265',
-                                    subTitle: 'following',
-                                  ),
-                                ],
-                              ),
+                    ),
+                    Container(
+                      width: size.width * 0.6,
+                      height: size.height * 0.15,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(top: 16, left: 16, right: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MyWidget(
+                                  title: '1,252',
+                                  subTitle: 'posts',
+                                ),
+                                MyWidget(
+                                  title: '4m',
+                                  subTitle: 'followers',
+                                ),
+                                MyWidget(
+                                  title: '265',
+                                  subTitle: 'following',
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 8,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 16, right: 16),
+                            child: MyButton(
+                              text: 'Edit Profile',
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 16, right: 16),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                ListTile(
+                  title: Text(
+                    "Home Furniture",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  subtitle: Text("Home accessories, some information about us"),
+                ),
+                ListTile(
+                  title: Text(
+                    "Contact US:",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("+925 987 952 2356",
+                          style: TextStyle(color: Colors.blue)),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "Chennai, India",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
                               child: MyButton(
-                                text: 'Edit Profile',
-                              ),
-                            )
-                          ],
-                        ),
+                            text: 'Add Product',
+                          )),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                              child: MyButton(
+                            text: 'Share',
+                          )),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                              child: MyButton(
+                            text: 'Contact Us',
+                          )),
+                        ],
                       )
                     ],
                   ),
-                  ListTile(
-                    title: Text(
-                      "Home Furniture",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    subtitle:
-                        Text("Home accessories, some information about us"),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "Contact US:",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("+925 987 952 2356",
-                            style: TextStyle(color: Colors.blue)),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          "Chennai, India",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: MyButton(
-                              text: 'Add Product',
-                            )),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Expanded(
-                                child: MyButton(
-                              text: 'Share',
-                            )),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Expanded(
-                                child: MyButton(
-                              text: 'Contact Us',
-                            )),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             Divider(),
             Container(
